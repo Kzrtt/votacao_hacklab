@@ -1,0 +1,112 @@
+Project:
+  startsOn: 'grid'
+  identifier: 'prj_id'
+  listingConfig:
+    grid: 
+      prj_name:
+        name: 'Nome' 
+        tagStyle: 'flex flex-row justify-between'
+        labelStyle: 'font-semibold text-secondary-500/50 text-md pb-2'
+        fieldStyle: 'truncate text-gray-700/75'
+        html: 'p'
+      prj_participants:
+        name: 'Participantes' 
+        tagStyle: 'flex flex-row justify-between'
+        labelStyle: 'font-semibold text-secondary-500/50 text-md pb-2'
+        fieldStyle: 'text-gray-700/75'
+        html: 'p'
+      prj_stack:
+        name: 'Stack' 
+        tagStyle: 'flex flex-row justify-between'
+        labelStyle: 'font-semibold text-secondary-500/50 text-md pb-2'
+        fieldStyle: 'text-gray-700/75'
+        html: 'p'
+      event_evt_id:
+        name: 'Evento' 
+        tagStyle: 'flex flex-row justify-between'
+        labelStyle: 'font-semibold text-secondary-500/50 text-md pb-2'
+        fieldStyle: 'text-gray-700/75'
+        getRelation: "event->evt_name"
+        html: 'p'
+    table:
+      prj_id:
+        name: Id
+        style: "font-semibold"
+      prj_name:
+        name: Nome
+        style: "font-semibold"
+      prj_stack:
+        name: Stack
+        style: "font-semibold"
+      prj_participants:
+        name: Participantes
+        style: 'font-semibold'
+  formConfig:
+    view: "form.component"
+    prj_name:
+      type: string
+      label: "Nome"
+      edit: true
+      placeholder: "Informe o Nome"
+      helper: "Nome do Projeto"
+      groupIn: "Dados Projeto"
+      sizing: "mb-4 w-full"
+      identifier: "name"
+      validationRules: 
+        - "required"
+      line: 1
+    prj_stack:
+      type: string
+      label: "Stack"
+      edit: true
+      placeholder: "Informe a Stack"
+      helper: "Stack do Projeto"
+      groupIn: "Dados Projeto"
+      sizing: "mb-4 w-1/2"
+      identifier: "stack"
+      validationRules: 
+        - "required"
+      line: 2
+    prj_participants:
+      type: string
+      edit: true
+      label: "Nome dos Participantes"
+      placeholder: "nomes"
+      helper: "Nome dos Participantes"
+      sizing: "mb-4 w-1/2"
+      groupIn: "Dados Projeto"
+      identifier: "participants"
+      validationRules: 
+        - "required"
+      line: 2
+    event_evt_id:
+      type: relation
+      label: "Evento"
+      edit: false
+      placeholder: "Selecione o Evento"
+      helper: "Evento que esse projeto está vinculado"
+      sizing: "mb-4 w-full"
+      groupIn: "Dados Projeto"
+      identifier: "event"
+      validationRules:
+        - "required"
+      fillOnStart:
+        controller: GenericCtrl
+        params:
+          model: "Event"
+        method: getAll
+        pluck:
+          - evt_name
+          - evt_id
+      line: 3
+  buttonsConfig:
+    showDeleteButton: true
+    showEditButton: true
+    showDetailsButton: false
+    showInsertButton: true
+    showSearchButton: true
+  getConfig: 
+    method: getAll
+    controller: ListingCtrl
+    params: 
+      model: Project

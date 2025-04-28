@@ -1,0 +1,103 @@
+Areas:
+  JudgeArea:
+    name: Área do Jurado
+    icon: fad fa-gavel
+    subItens:
+      Evaluation:
+        name: Avaliação
+        description: Área de avaliação de projetos
+        icon: fad fa-trophy
+        actions:
+          - Consult
+          - Insert
+          - Delete
+          - Edit
+  Gestao:
+    name: Gestão
+    icon: fad fa-university
+    subItens:
+      Judge:
+        name: Jurados
+        description: Área de controle de jurados
+        icon: fad fa-gavel
+        actions:
+          - Consult
+          - Insert
+          - Delete
+          - Edit
+      Criterion:
+        name: Critérios
+        description: Área de controle dos critérios
+        icon: fad fa-stream
+        actions:
+          - Consult
+          - Insert
+          - Delete
+          - Edit
+      Project:
+        name: Projetos
+        description: Área de controle dos projetos
+        icon: fad fa-folder-open
+        actions: 
+          - Consult
+          - Insert
+          - Delete
+          - Edit
+      Event:
+        name: Evento
+        description: Área de gestão de eventos
+        icon: fad fa-ticket-alt
+        actions: 
+          - Consult
+          - Insert
+          - Delete
+          - Edit
+  Sistema:
+    name: Sistema
+    icon: fad fa-galaxy
+    subItens:
+      Profile:
+        name: Perfis de Acesso
+        description: Área de controle de perfis de acesso
+        icon: fad fa-lock
+        actions: 
+          - Consult
+          - Insert
+          - Delete
+          - Edit
+        showIf: session@level in [Administrator, Entity]
+      User:
+        name: Usuários
+        description: Área de gestão de usuários
+        icon: fad fa-user-shield
+        actions: 
+          - Consult
+          - Insert
+          - Delete
+          - Edit
+        showIf: session@level in [Administrator, Entity]
+      Person:
+        name: Operadores
+        description: Área de gestão de operadores
+        icon: fad fa-user-circle
+        actions: 
+          - Consult
+          - Insert
+          - Delete
+          - Edit
+        showIf: session@level in [Administrator, Entity]
+
+  Notifications:
+    name: Notificações
+    icon: fad fa-bell
+    subItens:
+      Notification:
+        name: Notificações
+        description: Área de controle das notificações
+        icon: fad fa-bell
+        actions: 
+          - Consult
+          - Insert
+          - Delete
+          - Edit
+

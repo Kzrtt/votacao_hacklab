@@ -1,0 +1,65 @@
+Event:
+  startsOn: 'grid'
+  identifier: 'evt_id'
+  listingConfig:
+    grid:
+      evt_name:
+        name: Nome
+        tagStyle: 'flex flex-row justify-between'
+        labelStyle: 'font-semibold text-secondary-500/50 text-md pb-2'
+        fieldStyle: 'truncate text-gray-700/75'
+        html: 'p'
+      evt_description:
+        name: Descrição
+        tagStyle: 'flex flex-row justify-between'
+        labelStyle: 'font-semibold text-secondary-500/50 text-md pb-2'
+        fieldStyle: 'truncate text-gray-700/75'
+        html: 'p'
+    table:
+      evt_id:
+        name: Id
+        style: 'font-semibold'
+      evt_name:
+        name: Nome
+        style: 'font-semibold'
+      evt_description:
+        name: Descrição
+        style: 'font-semibold'
+  formConfig:
+    view: "form.component"
+    evt_name:
+      type: string
+      label: "Nome"
+      edit: false
+      placeholder: "Informe o nome"
+      helper: "Nome do Evento"
+      sizing: "mb-4 w-1/2"
+      groupIn: "Dados Básicos"
+      identifier: "name"
+      validationRules: 
+        - "required"
+        - "min:3"
+      line: 1
+    evt_description:
+      type: string
+      label: "Descrição"
+      edit: true
+      placeholder: "Informe a Descrição"
+      helper: "Descrição do Usuário"
+      groupIn: "Dados Básicos"
+      sizing: "mb-4 w-1/2"
+      identifier: "description"
+      validationRules: 
+        - "required"
+      line: 1
+  buttonsConfig:
+    showDeleteButton: true
+    showEditButton: true
+    showDetailsButton: true
+    showInsertButton: true
+    showSearchButton: true
+  getConfig:
+    controller: ListingCtrl
+    method: getAll
+    params: 
+      model: Event

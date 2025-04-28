@@ -1,0 +1,51 @@
+Profile:
+  startsOn: grid
+  identifier: prf_id
+  listingConfig:
+    grid:
+      prf_name:
+        name: Nome
+        tagStyle: 'flex flex-row justify-between'
+        labelStyle: 'font-semibold text-secondary-500/50 text-md pb-2'
+        fieldStyle: 'truncate text-gray-700/75'
+        html: 'p'
+      prf_entity:
+        name: Entidade
+        tagStyle: 'flex flex-row justify-between'
+        labelStyle: 'font-semibold text-secondary-500/50 text-md pb-2'
+        fieldStyle: 'truncate text-gray-700/75'
+        html: 'p'
+    table:
+      prf_id:
+        name: Id
+        style: "font-semibold"
+      prf_name:
+        name: Nome
+        style: "font-semibold"
+      prf_entity:
+        name: Entidade
+        style: "font-semibold"
+      prf_status:
+        name: Status
+        style: ""
+        listingFunction: getStatusBadge
+  formConfig:
+    view: profile-form
+  buttonsConfig:
+    showDeleteButton: true
+    showEditButton: false
+    showDetailsButton: false
+    showInsertButton: false
+    showSearchButton: true
+  additionalSingleActions:
+    makePermissions:
+      style: "relative p-2 rounded-lg transition duration-300 text-blue-400 bg-blue-300/20 hover:text-white hover:bg-blue-500 hover:cursor-pointer hover:shadow-sm"
+      icon: "fad fa-user-lock"
+      onTap:
+        function: "redirectTo"
+        params: "'permission-assign'"
+  getConfig: 
+    method: getAll
+    controller: ListingCtrl
+    params:
+      model: Profile

@@ -1,0 +1,89 @@
+Judge:
+  startsOn: 'grid'
+  identifier: 'jdg_id'
+  listingConfig:
+    grid: 
+      jdg_name:
+        name: 'Nome' 
+        tagStyle: 'flex flex-row justify-between'
+        labelStyle: 'font-semibold text-secondary-500/50 text-md pb-2'
+        fieldStyle: 'truncate text-gray-700/75'
+        html: 'p'
+      jdg_obs:
+        name: 'Observação' 
+        tagStyle: 'flex flex-row justify-between'
+        labelStyle: 'font-semibold text-secondary-500/50 text-md pb-2'
+        fieldStyle: 'text-gray-700/75'
+        html: 'p'
+      event_evt_id:
+        name: 'Evento' 
+        tagStyle: 'flex flex-row justify-between'
+        labelStyle: 'font-semibold text-secondary-500/50 text-md pb-2'
+        fieldStyle: 'text-gray-700/75'
+        html: 'p'
+        getRelation: "event->evt_name"
+    table:
+      jdg_id:
+        name: Id
+        style: "font-semibold"
+      jdg_name:
+        name: Nome
+        style: "font-semibold"
+      jdg_obs:
+        name: Observação
+        style: "font-semibold"
+  formConfig:
+    view: "form.component"
+    jdg_name:
+      type: string
+      label: "Nome"
+      edit: true
+      placeholder: "Informe o Nome"
+      helper: "Nome do Jurado"
+      groupIn: "Dados Jurado"
+      sizing: "mb-4 w-1/2"
+      identifier: "name"
+      validationRules: 
+        - "required"
+      line: 1
+    jdg_obs:
+      type: string
+      label: "Observação"
+      edit: true
+      placeholder: "Informe a Observação"
+      helper: "Observação do Jurado"
+      groupIn: "Dados Jurado"
+      sizing: "mb-4 w-1/2"
+      identifier: "obs"
+      line: 1
+    event_evt_id:
+      type: relation
+      label: "Evento"
+      edit: false
+      placeholder: "Selecione o Evento"
+      helper: "Evento que esse projeto está vinculado"
+      sizing: "mb-4 w-full"
+      groupIn: "Dados Jurado"
+      identifier: "event"
+      validationRules:
+        - "required"
+      fillOnStart:
+        controller: GenericCtrl
+        params:
+          model: "Event"
+        method: getAll
+        pluck:
+          - evt_name
+          - evt_id
+      line: 2
+  buttonsConfig:
+    showDeleteButton: true
+    showEditButton: true
+    showDetailsButton: false
+    showInsertButton: true
+    showSearchButton: true
+  getConfig: 
+    method: getAll
+    controller: ListingCtrl
+    params: 
+      model: Judge

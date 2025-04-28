@@ -1,0 +1,81 @@
+@import "tailwindcss";
+
+/* WireUI */
+@import '../../vendor/wireui/wireui/ts/global.css';
+@source '../../vendor/wireui/wireui';
+
+/* TallStackUI */
+@import '../../vendor/tallstackui/tallstackui/css/v4.css'; 
+@plugin '@tailwindcss/forms'; 
+@source '../../vendor/tallstackui/tallstackui/**/*.php'; 
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  /* Primary (agora #52c4ea, antes Secondary) */
+  --color-primary-100: #eaf8ff;
+  --color-primary-200: #d5f1ff;
+  --color-primary-300: #abe3ff;
+  --color-primary-400: #5cd0ff;
+  --color-primary-500: #52c4ea;
+  --color-primary-600: #47abd9;
+  --color-primary-700: #3682b2;
+  --color-primary-800: #275b84;
+  --color-primary-900: #1b3d57;
+
+  /* Secondary (agora #00213f, antes Primary) */
+  --color-secondary-100: #e6f2f9;
+  --color-secondary-200: #cce6f3;
+  --color-secondary-300: #99ccee;
+  --color-secondary-400: #4da6d9;
+  --color-secondary-500: #00213f;
+  --color-secondary-600: #001b36;
+  --color-secondary-700: #00142a;
+  --color-secondary-800: #000f20;
+  --color-secondary-900: #000814;
+
+  /* Tertiary (mantém #00ffff) */
+  --color-tertiary-100: #e5ffff;
+  --color-tertiary-200: #b2ffff;
+  --color-tertiary-300: #80ffff;
+  --color-tertiary-400: #4dffff;
+  --color-tertiary-500: #00ffff;
+  --color-tertiary-600: #00e6e6;
+  --color-tertiary-700: #00bfbf;
+  --color-tertiary-800: #008383;
+  --color-tertiary-900: #005f5f;
+
+  /* Warning (Amarelo) – inalterado */
+  --color-warning-100:  #fff9e5;
+  --color-warning-200:  #fff0b2;
+  --color-warning-300:  #ffe680;
+  --color-warning-400:  #ffdd4d;
+  --color-warning-500:  #ffd31a;
+  --color-warning-600:  #e6be17;
+  --color-warning-700:  #ccaa14;
+  --color-warning-800:  #b39511;
+  --color-warning-900:  #99800e;
+
+  /* Success (Verde) – inalterado */
+  --color-success-100:  #e5f7e9;
+  --color-success-200:  #b2e9c2;
+  --color-success-300:  #80db9b;
+  --color-success-400:  #4dcd74;
+  --color-success-500:  #1abf4d;
+  --color-success-600:  #17ab45;
+  --color-success-700:  #14973d;
+  --color-success-800:  #118335;
+  --color-success-900:  #0e6f2d;
+
+  /* Danger (Vermelho) – inalterado */
+  --color-danger-100:  #ffe5e5;
+  --color-danger-200:  #fcb2b2;
+  --color-danger-300:  #f68080;
+  --color-danger-400:  #f04d4d;
+  --color-danger-500:  #ea1a1a;
+  --color-danger-600:  #d41717;
+  --color-danger-700:  #bf1414;
+  --color-danger-800:  #a91111;
+  --color-danger-900:  #940e0e;
+}
+

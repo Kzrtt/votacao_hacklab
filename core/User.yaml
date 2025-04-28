@@ -1,0 +1,152 @@
+User:
+  startsOn: 'grid'
+  identifier: 'usr_id'
+  listingConfig:
+    grid: 
+      usr_email:
+        name: 'Email:' 
+        tagStyle: 'flex flex-row justify-between'
+        labelStyle: 'font-semibold text-secondary-500/50 text-md pb-2'
+        fieldStyle: 'truncate text-gray-700/75'
+        html: 'p'
+      usr_created_at:
+        name: 'Criado Em:' 
+        tagStyle: 'flex flex-row justify-between'
+        labelStyle: 'font-semibold text-secondary-500/50 text-md pb-2'
+        fieldStyle: 'text-gray-700/75'
+        listingFunction: getDate
+        html: 'p'
+      persons_pes_id:
+        name: 'Pessoa:' 
+        tagStyle: 'flex flex-row justify-between'
+        labelStyle: 'font-semibold text-secondary-500/50 text-md pb-2'
+        fieldStyle: 'text-gray-700/75'
+        getRelation: "getPerson->pes_name"
+        html: 'p'
+      profiles_prf_id:
+        name: 'Perfil:' 
+        tagStyle: 'flex flex-row justify-between'
+        labelStyle: 'font-semibold text-secondary-500/50 text-md pb-2'
+        fieldStyle: 'text-gray-700/75'
+        getRelation: "getProfile->prf_name"
+        html: 'p'
+    table:
+      usr_id:
+        name: Id
+        style: "font-semibold"
+      usr_email:
+        name: Email
+        style: "font-semibold"
+      usr_created_at:
+        name: Criado Em
+        style: "font-semibold"
+        listingFunction: getDate
+      persons_pes_id:
+        name: Pessoa
+        style: 'font-semibold'
+        getRelation: "getPerson->pes_name"
+      profiles_prf_id:
+        name: Perfil
+        style: 'font-semibold'
+        getRelation: "getProfile->prf_name"
+  formConfig:
+    view: "user-form"
+    usr_email:
+      type: string
+      label: "Email"
+      edit: true
+      placeholder: "Informe o Email"
+      helper: "Email do Usuário"
+      groupIn: "Dados Usuário"
+      sizing: "mb-4 w-full"
+      identifier: "email"
+      validationRules: 
+        - "required"
+      line: 1
+    usr_password:
+      type: string
+      label: "Senha"
+      edit: false
+      hide: "!isEdit"
+      placeholder: "Informe a Senha"
+      helper: "Senha do Usuário"
+      groupIn: "Dados Usuário"
+      sizing: "mb-4 w-full"
+      identifier: "password"
+      saveFunction: encrypt
+      validationRules: 
+        - "required"
+      line: 1
+    confirm_password:
+      type: string
+      edit: false
+      hide: "!isEdit"
+      label: "Confirmar Senha"
+      placeholder: "Confirme a senha"
+      helper: "Confirme a senha"
+      sizing: "mb-4 w-full"
+      groupIn: "Dados Usuário"
+      identifier: "confirm_password"
+      validationRules: 
+        - "required"
+      line: 1
+    persons_pes_id:
+      type: relation
+      label: "Operador"
+      edit: false
+      placeholder: "Selecione o Operador"
+      helper: "Pessoa vinculada a esse usuário"
+      sizing: "mb-4 w-2/3"
+      groupIn: "Dados Usuário"
+      identifier: "persons"
+      validationRules: 
+        - "required"
+      fillOnStart:  
+        controller: GenericCtrl
+        params:
+          model: "Person"
+        method: getAll
+        pluck:
+          - pes_name
+          - pes_id
+      line: 2
+    profiles_prf_id:
+      type: relation
+      label: "Perfil de Acesso"
+      edit: false
+      placeholder: "Selecione o Perfil de Acesso"
+      helper: "Perfil de Acesso desse usuário"
+      sizing: "mb-4 w-1/3"
+      groupIn: "Dados Usuário"
+      identifier: "profile"
+      validationRules: 
+        - "required"
+      updateRemoteField:
+        customRemote: getRepresentedAgents
+      fillOnStart:  
+        controller: GenericCtrl
+        params:
+          model: "Profile"
+        method: getAll
+        pluck:
+          - prf_name
+          - prf_id
+      line: 2
+  buttonsConfig:
+    showDeleteButton: true
+    showEditButton: true
+    showDetailsButton: false
+    showInsertButton: true
+    showSearchButton: true
+  additionalSingleActions:
+    makePermissions:
+      style: "relative p-2 rounded-lg transition duration-300 text-blue-400 bg-blue-300/20 hover:text-white hover:bg-blue-500 hover:cursor-pointer hover:shadow-sm"
+      icon: "fad fa-user-lock"
+      onTap:
+        function: "redirectTo"
+        params: "'user-permission-assign'"
+  getConfig: 
+    method: getAll
+    controller: ListingCtrl
+    params: 
+      model: User
