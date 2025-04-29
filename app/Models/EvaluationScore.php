@@ -11,13 +11,13 @@ class EvaluationScore extends Model
     use HasFactory;
 
     protected $table = 'evaluation_scores';
-    protected $primaryKey = 'es_id';
+    protected $primaryKey = 'evs_id';
     public $timestamps = false;
 
     protected $fillable = [
         'evaluation_eva_id',
         'criteria_crt_id',
-        'es_final_score',
+        'evs_score',
     ];
 
     public function evaluation()

@@ -34,7 +34,6 @@ class Header extends Component
     public function changeScreen($data)
     {
         session()->put('params', $data);
-
         $route = $data['_view'] == "" ? "list.component" : $data['_view'];
 
         return redirect()->route($route, ["local" => $data['_local']]);

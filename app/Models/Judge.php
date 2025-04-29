@@ -20,6 +20,8 @@ class Judge extends Model
     protected $fillable = [
         'jdg_name',
         'jdg_obs',
+        'jdg_email',
+        'jdg_password',
         'event_evt_id',
     ];
 

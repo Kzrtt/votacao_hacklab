@@ -4,8 +4,6 @@
 @endphp
 
 <div class="flex flex-row justify-center mt-6 space-x-10 w-full min-h-screen" x-data="{ listingMode: '{{$startsOn}}' }">
-    <x-ts-loading />
-
     <!-- MANTIDA: Sua parte esquerda original -->
     <div class="w-100 rounded-md bg-white shadow-sm p-6">
         <!-- Informações resumidas do usuário -->
@@ -206,8 +204,8 @@
                                 <div class="mt-6">
                                     @foreach($gridConfig as $key => $data)
                                         <{{$data['html']}} class="{{ @$data['tagStyle'] }} w-full truncate">
-                                            @if(!is_null($object->$key) && $object->$key != "")
-                                                <span class="{{ @$data['labelStyle'] }}">{{ $data['name'] }}</span>
+                                            @if(!is_null($object->$key))
+                                                <span class="{{ @$data['labelStyle'] }}">{{ $data['name'] }}&nbsp;&nbsp;</span>
                                             @endif
                                             <span class="{{ @$data['fieldStyle'] }}">
                                                 @if(@$data['getRelation']) 
@@ -246,7 +244,7 @@
 
                                 @if($buttonsConfig['showDeleteButton'])
                                     <button wire:click="delete({{ $object->$identifier }})"
-                                        class="p-2 rounded-lg transition duration-300 text-danger-400 bg-danger-300/20 hover:text-white hover:bg-primary-500 hover:shadow-sm hover:cursor-pointer">
+                                        class="p-2 rounded-lg transition duration-300 text-danger-400 bg-danger-300/20 hover:text-white hover:bg-danger-500 hover:shadow-sm hover:cursor-pointer">
                                         <i class="fad fa-trash-alt text-lg p-1"></i>
                                     </button>
                                 @endif

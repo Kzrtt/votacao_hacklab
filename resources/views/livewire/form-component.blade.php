@@ -1,7 +1,6 @@
 <div class="flex justify-center w-full">  
     <div class="w-4/5 flex flex-col justify-center p-5">
-        <p wire:loading>Carregando...</p>
-        <form wire:loading.remove wire:submit.prevent="submitForm">
+        <form wire:submit.prevent="submitForm">
 
             <!-- Alerta para Preenchimento dos Campos -->
             <div class="flex flex-row items-center bg-white w-full container px-5 py-4 mt-2 rounded-lg">
@@ -39,7 +38,7 @@
                         &nbsp;<span class="font-semibold">Cancelar</span>&nbsp;
                     </button>
 
-                    <button type="submit" class="bg-primary-300/55 text-primary-700 p-2 px-4 rounded-lg hover:cursor-pointer">
+                    <button type="submit" class="bg-primary-300/55 text-primary-700 p-2 px-4 rounded-lg hover:bg-primary-600/80 hover:text-white hover:cursor-pointer">
                         <i class="fad fa-check-circle p-1"></i>
                         &nbsp;<span class="font-semibold">Salvar</span>&nbsp;
                     </button>

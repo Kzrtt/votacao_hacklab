@@ -60,6 +60,18 @@ Criterion:
       validationRules: 
         - "required"
       line: 1
+    crt_explanation:
+      type: string
+      label: "Explicação"
+      edit: true
+      placeholder: "Informe a Explicação"
+      helper: "Explicação do critério"
+      groupIn: "Dados Critério"
+      sizing: "mb-4 w-full"
+      identifier: "explanation"
+      validationRules: 
+        - "required"
+      line: 2
     event_evt_id:
       type: relation
       label: "Evento"
@@ -79,7 +91,7 @@ Criterion:
         pluck:
           - evt_name
           - evt_id
-      line: 2
+      line: 3
   buttonsConfig:
     showDeleteButton: true
     showEditButton: true

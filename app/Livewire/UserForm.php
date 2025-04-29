@@ -65,6 +65,8 @@ class UserForm extends Component
             }
             
         }
+
+        $this->selectsPopulate['representedAgent'] = array();
     }
 
     public function getRepresentedAgents() {
@@ -76,7 +78,7 @@ class UserForm extends Component
         $fetchModel = "App\\Models\\".$profile->prf_entity;
 
         $entityMap = array(
-            "Establishment" => array("label" => "est_fantasy", "id" => "est_id"),
+            "Judge" => array("label" => "jdg_name", "id" => "jdg_id"),
             "Admin" => array("label" => "adm_fantasy", "id" => "adm_id"),
         );
         

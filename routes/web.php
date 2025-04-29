@@ -10,6 +10,7 @@ use App\Livewire\RecipeForm;
 use App\Livewire\Roles;
 use App\Livewire\UserPermissionAssignScreen;
 use App\Livewire\UserForm;
+use App\Livewire\VotingScreen;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -29,6 +30,8 @@ Route::get('/login', LoginScreen::class)->name("login");
 Route::middleware('auth')->group(function () {
     Route::get('/admin/', Dashboard::class)->name("dashboard");
     Route::get('/admin/ProfileScreen', ProfileScreen::class)->name("profile");
+
+    Route::get('/admin/VotingScreen/List', VotingScreen::class)->name('voting-screen');
 
     Route::get('/admin/{local}/List', ListComponent::class)->name("list.component");
     Route::get('/admin/{local}/Form/{id?}', FormComponent::class)->name("form.component");

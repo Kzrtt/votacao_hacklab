@@ -11,7 +11,7 @@
         function getFriendlyAgentType($agentType) {
             $agentMap = array(
                 "Admin" => "Administrador",
-                "Establishment" => "Estabelecimento"
+                "Judge" => "Jurado"
             );
 
             return isset($agentMap[$agentType]) ? $agentMap[$agentType] : "Desconhecido";
@@ -23,8 +23,8 @@
             switch ($level) {
                 case 'Admin':
                     return auth()->user()->getRepresentedAgent->getAgent->adm_fantasy;
-                case 'Establishment':
-                    return auth()->user()->getRepresentedAgent->getAgent->est_fantasy;
+                case 'Judge':
+                    return auth()->user()->getRepresentedAgent->getAgent->jdg_name;
                 default:
                     return "Desconhecido";
                     break;

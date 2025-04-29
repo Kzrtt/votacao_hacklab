@@ -20,6 +20,7 @@ class Criterion extends Model
     protected $fillable = [
         'crt_name',
         'crt_weight',
+        'crt_explanation',
         'event_evt_id',
     ];
 

@@ -259,7 +259,7 @@
                                     &nbsp;<span class="font-semibold">Voltar</span>&nbsp;
                                 </button>
 
-                                <button type="submit" class="bg-primary-300/55 text-primary-700 p-2 px-4 rounded-lg hover:cursor-pointer hover:shadow-lg">
+                                <button type="submit" class="bg-primary-300/55 text-primary-700 p-2 px-4 rounded-lg hover:cursor-pointer hover:bg-primary-600/80 hover:text-white hover:shadow-lg">
                                     <i class="fad fa-check-circle p-1"></i>
                                     &nbsp;<span class="font-semibold">Alterar Permissões</span>&nbsp;
                                 </button>

@@ -82,9 +82,8 @@ class UserCtrl extends GenericCtrl {
                 "message" => "Usuário não encontrado na base de dados...",
             );
         }
-        
-        //if($password != $this->tripleDES->decrypt($user->usr_password)) {
-        if($password != $user->usr_password) {  
+
+        if($password != $this->tripleDES->decrypt($user->usr_password)) {
             return array(
                 "status" => false,
                 "message" => "Senha incorreta...",

@@ -3,10 +3,11 @@ Areas:
     name: Área do Jurado
     icon: fad fa-gavel
     subItens:
-      Evaluation:
+      VotingScreen:
         name: Avaliação
         description: Área de avaliação de projetos
         icon: fad fa-trophy
+        customView: voting-screen
         actions:
           - Consult
           - Insert
