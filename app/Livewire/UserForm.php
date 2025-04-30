@@ -126,7 +126,7 @@ class UserForm extends Component
                     if($representedAgent->represented_agent_id != $this->formData['representedAgent']) {
                         $userRepresentedAgentCtrl->save(
                             array(
-                                'ura_type' => $profile->prf_entity,
+                                'ura_type' => "App\\Models\\".$profile->prf_entity,
                                 'represented_agent_id' => $this->formData['representedAgent'],
                                 'users_usr_id' => $user->usr_id,
                             )

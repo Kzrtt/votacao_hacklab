@@ -125,7 +125,6 @@ class VotingScreen extends Component
         $criterionCtrl = new GenericCtrl("Criterion");
         $evaluationCtrl = new GenericCtrl("Evaluation");
 
-
         $this->projects = [];
         $this->criterions = [];
         $this->projectsEvaluation = [];
@@ -144,6 +143,14 @@ class VotingScreen extends Component
             $this->projectsEvaluation[$project->prj_id] = $criterionsArray;
             $this->refreshOptions($project->prj_id);
         }
+    }
+
+    public function updateScore($projectId, $criterionId, $value)
+    {
+        // normaliza pra float e 1 casa decimal
+        $score = round((float) str_replace(',', '.', $value), 1);
+
+        $this->projectsEvaluation[$projectId][$criterionId] = $score;
     }
 
     public function refreshOptions($projectId) {

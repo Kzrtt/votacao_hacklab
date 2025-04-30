@@ -62,7 +62,7 @@
         <!-- Lado esquerdo: ícone + textos -->
         <div class="flex items-center space-x-4">
             <div class="w-14 h-14 flex items-center justify-center bg-tertiary-200/80 rounded-lg">
-                <i class="fad fa-trophy text-xl text-primary-800/90"></i>
+                <i class="fad fa-box-ballot text-xl text-primary-800/90"></i>
             </div>
             <div class="flex flex-col">
                 <p class="text-lg font-semibold text-primary-800 mb-1">Avaliação do Evento</p>
@@ -134,7 +134,7 @@
         </div>
         
         <!-- x-show="selected !== null" -->
-        <div wire:loading.remove x-show="selected !== null" class="mt-8 mb-10 w-full bg-white rounded-xl">
+        <div x-show="selected !== null" class="mt-8 mb-10 w-full bg-white rounded-xl">
             <table class="min-w-full bg-white rounded-lg overflow-hidden shadow">
                 <thead class="bg-primary-800/90 my-4">
                     <tr>
@@ -144,7 +144,7 @@
                 </thead>
                 <tbody class="divide-y divide-gray-200">
                     @foreach ($criterions as $criterion)
-                        <tr>
+                        <tr wire:key="project-{{ $selectedProject }}-criterion-{{ $criterion['crt_id'] }}">
                             <td class="px-4 py-3 text-gray-800">
                                 <span class="text-md font-semibold text-black/55">{{ $criterion['crt_name'] }} ({{ $criterion['crt_weight'] }}%)</span><br>
                                 <span class="text-sm text-primary-600/80">{{ $criterion['crt_explanation'] }}</span>
@@ -152,9 +152,17 @@
                             <td class="px-4 py-3 text-right">
                                 <input
                                     type="number"
-                                    placeholder="0"
-                                    class="w-20 px-2 py-1 border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-primary-500"
-                                    wire:model="projectsEvaluation.{{ $selectedProject }}.{{ $criterion['crt_id'] }}"
+                                    min="0"
+                                    step="0.1"
+                                    lang="en"
+                                    placeholder="0.0"
+                                    class="w-20 px-2 py-1 border rounded focus:outline-none focus:ring-1 focus:ring-primary-500"
+                                    value="{{ 
+                                        isset($projectsEvaluation[$selectedProject][$criterion['crt_id']])
+                                            ? number_format($projectsEvaluation[$selectedProject][$criterion['crt_id']], 1, '.', '')
+                                            : ''
+                                    }}"
+                                    wire:change="updateScore({{ $selectedProject }}, {{ $criterion['crt_id'] }}, $event.target.value)"
                                 />
                             </td>
                         </tr>

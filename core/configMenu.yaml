@@ -6,7 +6,7 @@ Areas:
       VotingScreen:
         name: Avaliação
         description: Área de avaliação de projetos
-        icon: fad fa-trophy
+        icon: fad fa-box-ballot
         customView: voting-screen
         actions:
           - Consult
