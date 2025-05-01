@@ -1,4 +1,15 @@
 Areas:
+  Utilitaries:
+    name: Utilitários
+    icon: fad fa-union
+    subItens:
+      StopwatchScreen:
+        name: Crônometro
+        description: Crônometro do Evento
+        icon: fad fa-box-ballot
+        customView: stopwatch
+        actions:
+          - Consult
   JudgeArea:
     name: Área do Jurado
     icon: fad fa-gavel

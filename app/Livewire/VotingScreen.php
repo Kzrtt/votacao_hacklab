@@ -38,7 +38,6 @@ class VotingScreen extends Component
         $eventCtrl = new GenericCtrl("Event");
 
         $this->usrLevel = auth()->user()->usr_level;
-        $this->jdgId = auth()->user()->getRepresentedAgent->getAgent->jdg_id;
 
         if($this->usrLevel == "Admin") {
             $events = $eventCtrl->getAll();
@@ -46,6 +45,7 @@ class VotingScreen extends Component
                 $this->events[] = $value->toArray();
             }
         } else {
+            $this->jdgId = auth()->user()->getRepresentedAgent->getAgent->jdg_id;
             $this->evtId = auth()->user()->getRepresentedAgent->getAgent->event->evt_id;
             $this->fetchProjects($this->evtId);
         }          
@@ -154,16 +154,18 @@ class VotingScreen extends Component
     }
 
     public function refreshOptions($projectId) {
-        $evaluationCtrl = new GenericCtrl("Evaluation");
+        if($this->usrLevel == "Judge") {
+            $evaluationCtrl = new GenericCtrl("Evaluation");
 
-        $evaluation = $evaluationCtrl->getObjectByFields(
-            array("project_prj_id", "judge_jdg_id"),
-            array($projectId, $this->jdgId),
-        );
+            $evaluation = $evaluationCtrl->getObjectByFields(
+                array("project_prj_id", "judge_jdg_id"),
+                array($projectId, $this->jdgId),
+            );
 
-        if($evaluation instanceof \App\Models\Evaluation) {
-            foreach ($evaluation->scores as $key => $score) {
-                $this->projectsEvaluation[$projectId][$score->criterion->crt_id] = $score->evs_score;
+            if($evaluation instanceof \App\Models\Evaluation) {
+                foreach ($evaluation->scores as $key => $score) {
+                    $this->projectsEvaluation[$projectId][$score->criterion->crt_id] = $score->evs_score;
+                }
             }
         }
     }

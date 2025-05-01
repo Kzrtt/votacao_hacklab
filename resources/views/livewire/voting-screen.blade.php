@@ -85,9 +85,9 @@
 
     <div class="w-full"
         x-data="{
-            projects: @js($projects),
-            criterions: @js($criterions),
-            selected: null
+            criterions: @entangle('projects'),
+            criterions: @entangle('criterions'),
+            selected: @entangle('selectedProject')
         }"
     >
         <div class="mt-8 w-full grid grid-cols-5 space-x-10">

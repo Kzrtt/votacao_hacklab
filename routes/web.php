@@ -8,6 +8,7 @@ use App\Livewire\PermissionAssignScreen;
 use App\Livewire\LoginScreen;
 use App\Livewire\RecipeForm;
 use App\Livewire\Roles;
+use App\Livewire\StopwatchScreen;
 use App\Livewire\UserPermissionAssignScreen;
 use App\Livewire\UserForm;
 use App\Livewire\VotingScreen;
@@ -32,6 +33,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/admin/ProfileScreen', ProfileScreen::class)->name("profile");
 
     Route::get('/admin/VotingScreen/List', VotingScreen::class)->name('voting-screen');
+    Route::get('/admin/StopwatchScreen/List', StopwatchScreen::class)->name("stopwatch");
 
     Route::get('/admin/{local}/List', ListComponent::class)->name("list.component");
     Route::get('/admin/{local}/Form/{id?}', FormComponent::class)->name("form.component");

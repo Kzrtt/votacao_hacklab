@@ -36,4 +36,9 @@ class Event extends Model
     {
         return $this->hasMany(Judge::class, 'event_evt_id', 'evt_id');
     }
+
+    public function timer()
+    {
+        return $this->hasOne(\App\Models\EventTimer::class);
+    }
 }
