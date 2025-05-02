@@ -45,7 +45,7 @@ Sistema de votação de projetos para eventos de programação, construído como
 ![Manipulação dos Jurados](./docs/tela_jurados.jpg)
 ![Manipulação dos Critérios](./docs/tela_criterios.jpg)
 ![Manipulação dos Projetos](./docs/tela_projetos.jpg)
-![Manipulação dos Eventos](./docs/tela_eventos.jpg)
+![Manipulação dos Eventos](./docs/tela_evento.jpg)
 
 
 
