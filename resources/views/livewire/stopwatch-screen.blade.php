@@ -133,17 +133,17 @@
 
     @if ($event)
         <div class="flex flex-col items-center justify-between w-full mt-6 bg-white rounded-lg p-4 shadow">
-            <h2 class="text-2xl font-semibold mb-2 mt-4 text-center text-primary-900/40">
+            <h2 class="text-2xl font-semibold mb-8 mt-4 text-center text-primary-900/40">
                 {{ $event->evt_name }}
             </h2>
 
             <div
                 x-data="countdownTimer({{ $startTimestamp }})"
                 x-init="init()"
-                class="font-mono text-center mb-4 mt-6"
+                class="text-center"
             >
                 <span
-                    class="text-6xl text-primary-800/90"
+                    class="text-6xl text-primary-800/90 font-mono"
                     x-text="isFinished ? 'Finalizado!!' : formatted()"
                 ></span>
 
@@ -179,74 +179,93 @@
 
 <script>
     document.addEventListener('alpine:init', () => {
-        Alpine.data('countdownTimer', () => ({
-            duration: @entangle('duration'),
-            startTimestamp: @entangle('startTimestamp'),
-            remaining: 0,
-            timerId: null,
+      Alpine.data('countdownTimer', (initialTimestamp) => ({
+        // bidirecional com Livewire
+        duration:       @entangle('duration'),
+        startTimestamp: @entangle('startTimestamp'),
+        remaining:      0,
+        timerId:        null,
     
-            get durationSec() {
-                const [h, m] = this.duration.split(':').map(Number)
-                return h * 3600 + m * 60
-            },
+        // calcula segundos totais
+        get durationSec() {
+          const [h, m] = this.duration.split(':').map(Number)
+          return h * 3600 + m * 60
+        },
     
-            // 1) novo getter para saber se terminou
-            get isFinished() {
-                return this.remaining <= 0
-            },
+        // sinaliza quando chegou a zero
+        get isFinished() {
+          return this.remaining <= 0
+        },
     
-            init() {
-                this.calcRemaining()
-        
-                // não retoma se já terminou
-                if (this.startTimestamp > 0 && this.remaining > 0) {
-                    this.startTick()
-                }
-        
-                this.$watch('duration',   () => this.calcRemaining())
-                this.$watch('startTimestamp', () => {
-                    this.calcRemaining()
-                    if (this.startTimestamp > 0 && this.remaining > 0) {
-                        this.startTick()
-                    }
-                })
-            },
+        init() {
+          // 1) importa o valor que veio na renderização
+          this.startTimestamp = initialTimestamp
     
-            start() {
-                if (this.timerId) return
-                    this.timerId = setInterval(() => {
-                        if (this.remaining > 0) {
-                        this.remaining--
-                        } else {
-                        clearInterval(this.timerId)
-                        this.timerId = null
-                        }
-                    }, 1000)
-                },
+          // 2) calcula o restante e retoma se estiver no meio
+          this.calcRemaining()
+          if (this.startTimestamp > 0 && this.remaining > 0) {
+            this.startTick()
+          }
     
-            restart() {
-                clearInterval(this.timerId)
-                this.timerId = null
-                this.startTimestamp = 0
-            },
+          // 3) toda vez que duration mudar, refaz remaining
+          this.$watch('duration', () => this.calcRemaining())
     
-            calcRemaining() {
-                const now = Math.floor(Date.now() / 1000)
-                if (this.startTimestamp > 0) {
-                    const elapsed = now - this.startTimestamp
-                    this.remaining = Math.max(this.durationSec - elapsed, 0)
-                } else {
-                    this.remaining = this.durationSec
-                }
-            },
-    
-            formatted() {
-                const s = this.remaining
-                const hh = String(Math.floor(s / 3600)).padStart(2, '0')
-                const mm = String(Math.floor((s % 3600) / 60)).padStart(2, '0')
-                const ss = String(s % 60).padStart(2, '0')
-                return `${hh}:${mm}:${ss}`
+          // 4) e toda vez que startTimestamp mudar (inclusive ao trocar de evento),
+          //    refaz e retoma o tick
+          this.$watch('startTimestamp', () => {
+            this.calcRemaining()
+            if (this.startTimestamp > 0 && this.remaining > 0) {
+              this.startTick()
+            } else {
+              clearInterval(this.timerId)
+              this.timerId = null
             }
-        }))
+          })
+        },
+    
+        // apenas dispara o backend — o watcher vai cuidar de iniciar o tick
+        start() {
+          if (this.timerId) return
+          this.$wire.startTimer()
+        },
+    
+        // cria o setInterval de decremento
+        startTick() {
+          if (this.timerId) return
+          this.timerId = setInterval(() => {
+            if (this.remaining > 0) {
+              this.remaining--
+            } else {
+              clearInterval(this.timerId)
+              this.timerId = null
+            }
+          }, 1000)
+        },
+    
+        // reinicia tudo
+        restart() {
+          this.$wire.resetTimer()
+        },
+    
+        // calcula o remaining de acordo com o timestamp
+        calcRemaining() {
+          const now = Math.floor(Date.now()/1000)
+          if (this.startTimestamp > 0) {
+            const elapsed = now - this.startTimestamp
+            this.remaining = Math.max(this.durationSec - elapsed, 0)
+          } else {
+            this.remaining = this.durationSec
+          }
+        },
+    
+        // formata HH:MM:SS
+        formatted() {
+          const s  = this.remaining
+          const hh = String(Math.floor(s/3600)).padStart(2,'0')
+          const mm = String(Math.floor((s%3600)/60)).padStart(2,'0')
+          const ss = String(s%60).padStart(2,'0')
+          return `${hh}:${mm}:${ss}`
+        }
+      }))
     })
-</script>
+    </script>
