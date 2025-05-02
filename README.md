@@ -40,6 +40,8 @@ Sistema de votação de projetos para eventos de programação, construído como
 ![Apresentação dos Resultados (Borrado)](./docs/tela_votacao_blur.jpg)
 ![Apresentação dos Resultados](./docs/tela_votacao_final.jpg)
 ![Detalhes da Votação](./docs/detalhes_votacao.jpg)
+![Tela do Crônometro](./docs/tela_cronometro.png)
+![Tela Votação Jurados](./docs/tela_votacao_jurado.png)
 
 <!-- Telas Genéricas -->
 ![Manipulação dos Jurados](./docs/tela_jurados.jpg)
