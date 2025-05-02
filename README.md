@@ -18,10 +18,11 @@ Sistema de votação de projetos para eventos de programação, construído como
 - **Interface de Votação**: ambiente dedicado para jurados preencherem notas e comentários.
 - **Painel de Resultados**: área pública/privada para anunciar vencedores e mostrar classificação final.
 - **Flexibilidade** para personalizar views caso precise de layout específico.
+- **Crônometro** crônometro compartilhado entre todos os users de um certo evento para sincronizar o tempo restante para desafios.
 
 ## 📦 Tecnologias
 
-- **Laravel 10.x**
+- **Laravel 11.x**
 - **LaravelCMS** (template para CRUD dinâmico via YAML, construido usando a TALL Stack)
 - **Tailwind CSS** (estilização)
 - **YAML** (configuração de entidades)
