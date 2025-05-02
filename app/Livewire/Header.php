@@ -23,7 +23,7 @@ class Header extends Component
     public $configTabs = array();
     public $initialTab = "";
     public $initialSubTab = "";
-    public $showNotification = true;
+    public $showNotification = false;
     public $showConfig = true;
 
     public function home() {

@@ -28,7 +28,7 @@
 
                 <!-- Actions -->
                 <div class="flex items-center space-x-1 py-2">
-                    @if ($showConfig)
+                    @if ($showConfig && count($configTabs) > 0)
                         <button @click="open = ! open" class="relative p-2 rounded-lg transition duration-300 hover:bg-primary-500/20 hover:shadow-sm hover:cursor-pointer">
                             <i class="fad fa-cog text-white text-2xl p-1"></i>
                         </button>

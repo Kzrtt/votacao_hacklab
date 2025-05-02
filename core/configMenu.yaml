@@ -6,7 +6,7 @@ Areas:
       StopwatchScreen:
         name: Crônometro
         description: Crônometro do Evento
-        icon: fad fa-box-ballot
+        icon: fad fa-stopwatch
         customView: stopwatch
         actions:
           - Consult

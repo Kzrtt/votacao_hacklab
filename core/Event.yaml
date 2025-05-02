@@ -63,3 +63,6 @@ Event:
     method: getAll
     params: 
       model: Event
+  saveConfig:
+    controller: "App\\Controllers\\EventCtrl"
+    method: saveEventWithStopwatch

@@ -8,12 +8,12 @@
             <div class="mb-2">
                 <img src="{{ url('images/logo_hacklab.png') }}" alt="Logo" class="h-40">
             </div>
-            <p class="mb-10 text-center text-lg text-tertiary-200/60">Sistema para gestão da avaliação do evento.</p>
+            <p class="mb-10 text-center text-lg text-tertiary-200/60">Sistema para gestão e avaliação de eventos de programação.</p>
         </div>
         <!-- Conteúdo Inferior: Versão e link de contato -->
         <div class="flex justify-between items-center">
-            <span class="text-sm font-bold text-tertiary-200/60">@2025 - Kvrt Dvlpmnt - 0.0.1</span>
-            <a href="/contato" class="text-sm font-semibold text-tertiary-200/60 underline hover:text-gray-200">Contato</a>
+            <span class="text-sm font-bold text-tertiary-200/60">@2025 - Kvrt Dvlpmnt - 1.0.0</span>
+            <a href="https://github.com/Kzrtt" class="text-sm font-semibold text-tertiary-200/60 underline hover:text-gray-200">Contato</a>
         </div>
     </div>
 
