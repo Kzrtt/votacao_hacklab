@@ -36,9 +36,18 @@ Sistema de votação de projetos para eventos de programação, construído como
 ## 🖼️ Screenshots
 
 <!-- Adicione prints relevantes do sistema aqui -->
-1. Tela de Login
-2. Listagem de Jurados
-3. Interface de Votação
-4. Resultado Final
+![Login do Sistema](./docs/login.jpg)
+![Apresentação dos Resultados (Borrado)](./docs/tela_votacao_blur.jpg)
+![Apresentação dos Resultados](./docs/tela_votacao_final.jpg)
+![Detalhes da Votação](./docs/detalhes_votacao.jpg)
+
+<!-- Telas Genéricas -->
+![Manipulação dos Jurados](./docs/tela_jurados.jpg)
+![Manipulação dos Critérios](./docs/tela_criterios.jpg)
+![Manipulação dos Projetos](./docs/tela_projetos.jpg)
+![Manipulação dos Eventos](./docs/tela_eventos.jpg)
+
+
+
 
 2025 @ Kvrt Dvlpmnt
