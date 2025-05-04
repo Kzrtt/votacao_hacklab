@@ -105,68 +105,72 @@
         </div>
     @endif
 
-    <div class="w-full">
-        <div class="mt-8 w-full grid grid-cols-5 space-x-10">
-            @foreach ($report as $key => $project)
-                <div
-                    x-data="{ revealed: false }"
-                    @click="if(!revealed) {
-                        revealed = true; 
-                        revealedCount++;
-                    }"
-                    :class="revealed ? '' : 'filter blur-md cursor-pointer'" 
-                    class="bg-gray-100 relative rounded-lg shadow hover:shadow-lg hover:scale-[1.01] hover:cursor-pointer transition-all duration-200">
-                    <div class="flex items-center justify-center w-20 h-20 bg-white rounded-full absolute top-6 right-3">
-                        <div class="flex items-center justify-center w-17 h-17 bg-tertiary-200/80 rounded-full">
-                            <p class="text-primary-800/90 font-bold text-2xl">{{ $key + 1 }}°</p>
-                        </div>
-                    </div>
-                    <div class="w-full h-16 rounded-t-lg bg-primary-800/90"></div>
+    @php $isJudge = ($usrLevel === 'Judge'); @endphp
 
-                    <div class="px-4 pb-2 pt-0 mt-5 mb-2 space-y-1">
-                        <div class="mt-6">
-                            <p class="flex flex-col justify-between w-full truncate">
-                                <span class="font-semibold text-primary-800/70 text-lg">Nome</span>
-                                <span class="text-gray-700/55 font-semibold text-md pb-2">
-                                    {{ $project['prj_name'] }}
-                                </span>
-                            </p>
-
-                            <p class="flex flex-col justify-between w-full truncate">
-                                <span class="font-semibold text-primary-800/70 text-lg">Participantes</span>
-                                <span class="text-gray-700/55 font-semibold text-md pb-2">
-                                    {{ $project['prj_participants'] }}
-                                </span>
-                            </p>
-
-                            <p class="flex flex-col justify-between w-full truncate">
-                                <span class="font-semibold text-primary-800/70 text-lg">Stack</span>
-                                <span class="text-gray-700/55 font-semibold text-md pb-2">
-                                    {{ $project['prj_stack'] }}
-                                </span>
-                            </p>
-
-                            <p class="flex flex-col justify-between w-full truncate">
-                                <span class="font-semibold text-primary-800/70 text-lg">Nota Final</span>
-                                <span class="text-gray-700/55 font-semibold text-md pb-2">
-                                    {{ $project['final_average'] }}
-                                </span>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            @endforeach
-        </div>
-    </div>
-
-    @if ($evtId)
+    @if (!$isJudge)
         <div class="w-full">
-            <hr class="border-t-2 border-dashed border-primary-800/90 my-10">
+            <div class="mt-8 w-full grid grid-cols-5 space-x-10">
+                @foreach ($report as $key => $project)
+                    <div
+                        x-data="{ revealed: false }"
+                        @click="if(!revealed) {
+                            revealed = true; 
+                            revealedCount++;
+                        }"
+                        :class="revealed ? '' : 'filter blur-md cursor-pointer'" 
+                        class="bg-gray-100 relative rounded-lg shadow hover:shadow-lg hover:scale-[1.01] hover:cursor-pointer transition-all duration-200">
+                        <div class="flex items-center justify-center w-20 h-20 bg-white rounded-full absolute top-6 right-3">
+                            <div class="flex items-center justify-center w-17 h-17 bg-tertiary-200/80 rounded-full">
+                                <p class="text-primary-800/90 font-bold text-2xl">{{ $key + 1 }}°</p>
+                            </div>
+                        </div>
+                        <div class="w-full h-16 rounded-t-lg bg-primary-800/90"></div>
+
+                        <div class="px-4 pb-2 pt-0 mt-5 mb-2 space-y-1">
+                            <div class="mt-6">
+                                <p class="flex flex-col justify-between w-full truncate">
+                                    <span class="font-semibold text-primary-800/70 text-lg">Nome</span>
+                                    <span class="text-gray-700/55 font-semibold text-md pb-2">
+                                        {{ $project['prj_name'] }}
+                                    </span>
+                                </p>
+
+                                <p class="flex flex-col justify-between w-full truncate">
+                                    <span class="font-semibold text-primary-800/70 text-lg">Participantes</span>
+                                    <span class="text-gray-700/55 font-semibold text-md pb-2">
+                                        {{ $project['prj_participants'] }}
+                                    </span>
+                                </p>
+
+                                <p class="flex flex-col justify-between w-full truncate">
+                                    <span class="font-semibold text-primary-800/70 text-lg">Stack</span>
+                                    <span class="text-gray-700/55 font-semibold text-md pb-2">
+                                        {{ $project['prj_stack'] }}
+                                    </span>
+                                </p>
+
+                                <p class="flex flex-col justify-between w-full truncate">
+                                    <span class="font-semibold text-primary-800/70 text-lg">Nota Final</span>
+                                    <span class="text-gray-700/55 font-semibold text-md pb-2">
+                                        {{ $project['final_average'] }}
+                                    </span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
         </div>
+
+        @if ($evtId)
+            <div class="w-full">
+                <hr class="border-t-2 border-dashed border-primary-800/90 my-10">
+            </div>
+        @endif
     @endif
 
-    @if (count($report) > 0)
-        <div x-show="revealedCount === {{ count($report) }}" class="mb-10 w-full space-y-6">
+    @if (count($report) > 0 || $isJudge)
+        <div x-show="revealedCount === {{ count($report) }} || {{ $isJudge }}" class="mb-10 w-full space-y-6 {{ $isJudge ? "mt-5" : "" }}">
             @foreach($report as $project)
                 <div x-data="{ open: false }" class="overflow-hidden rounded-lg">
                     <!-- Cabeçalho do card -->

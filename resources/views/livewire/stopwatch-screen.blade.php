@@ -1,4 +1,6 @@
 <div x-data class="flex flex-col items-center mt-8 px-50 w-full">
+    @php $isJudge = ($usrLevel === 'Judge'); @endphp
+
     <x-ts-modal 
         title="Nova duração do Crônometro" 
         wire="changeDurationModal" 
@@ -122,13 +124,15 @@
             </div>
             <div class="flex flex-col">
                 <p class="text-lg font-semibold text-primary-800 mb-1">Crônometro do Evento</p>
-                <p class="text-sm text-primary-600">Selecione um evento para apresentar o crônometro</p>
+                <p class="text-sm text-primary-600">{{ $isJudge ? "Cronômetro de Duração do Evento" : "Selecione um evento para apresentar o crônometro" }}</p>
             </div>
         </div>
 
-        <button wire:click="openModal" class="p-2 rounded-lg bg-primary-300/55 text-primary-700 hover:bg-primary-600/80 hover:text-white hover:cursor-pointer">
-            <i class="fad fa-ticket-alt p-1"></i>&nbsp;<span class="font-semibold">Selecionar Evento</span>&nbsp;
-        </button>
+        @if (!$isJudge)
+            <button wire:click="openModal" class="p-2 rounded-lg bg-primary-300/55 text-primary-700 hover:bg-primary-600/80 hover:text-white hover:cursor-pointer">
+                <i class="fad fa-ticket-alt p-1"></i>&nbsp;<span class="font-semibold">Selecionar Evento</span>&nbsp;
+            </button> 
+        @endif
     </div>
 
     @if ($event)
@@ -147,31 +151,39 @@
                     x-text="isFinished ? 'Finalizado!!' : formatted()"
                 ></span>
 
-                <div class="mt-10 space-x-2">
-                    <button
-                        @click="start(); $wire.startTimer()"
-                        x-show="!timerId && !isFinished"
-                        class="bg-success-300/55 text-success-700 p-2 px-4 rounded-lg hover:bg-success-600/80 hover:text-white hover:cursor-pointer"
-                    >
-                        <i class="fad fa-play-circle p-1"></i>
-                        <span class="font-semibold">Iniciar</span>
-                    </button>
+                @if (!$isJudge)
+                    <div class="mt-10 space-x-2">
+                        <button
+                            @click="start(); $wire.startTimer()"
+                            x-show="!timerId && !isFinished"
+                            class="bg-success-300/55 text-success-700 p-2 px-4 rounded-lg hover:bg-success-600/80 hover:text-white hover:cursor-pointer"
+                        >
+                            <i class="fad fa-play-circle p-1"></i>
+                            <span class="font-semibold">Iniciar</span>
+                        </button>
 
-                    <!-- Mostrar “Reiniciar” se estiver rodando OU já tiver terminado -->
-                    <button
-                        @click="restart(); $wire.resetTimer()"
-                        x-show="timerId || isFinished"
-                        class="bg-primary-300/55 text-primary-700 p-2 px-4 rounded-lg hover:bg-primary-600/80 hover:text-white hover:cursor-pointer"
-                    >
-                        <i class="fad fa-sync-alt p-1"></i>
-                        <span class="font-semibold">Reiniciar</span>
-                    </button>
+                        <!-- Mostrar “Reiniciar” se estiver rodando OU já tiver terminado -->
+                        <button
+                            @click="restart(); $wire.resetTimer()"
+                            x-show="timerId || isFinished"
+                            class="bg-primary-300/55 text-primary-700 p-2 px-4 rounded-lg hover:bg-primary-600/80 hover:text-white hover:cursor-pointer"
+                        >
+                            <i class="fad fa-sync-alt p-1"></i>
+                            <span class="font-semibold">Reiniciar</span>
+                        </button>
 
-                    <button wire:click="openChangeDurationModal" class="bg-primary-600/80 text-white p-2 px-4 rounded-lg hover:bg-primary-300/55 hover:text-primary-700 hover:cursor-pointer">
-                        <i class="fad fa-stopwatch p-1"></i>
-                        <span class="font-semibold">Duração</span>
-                    </button>
-                </div>
+                        <button wire:click="openChangeDurationModal" class="bg-primary-600/80 text-white p-2 px-4 rounded-lg hover:bg-primary-300/55 hover:text-primary-700 hover:cursor-pointer">
+                            <i class="fad fa-stopwatch p-1"></i>
+                            <span class="font-semibold">Duração</span>
+                        </button>
+                    </div>
+                @else 
+                    <div class="mt-10">
+                        <h4 class="text-lg font-semibold mb-8 mt-4 text-center text-primary-900/40">
+                            O Crônometro é manipulado pelo Administrador do evento
+                        </h4>
+                    </div>
+                @endif
             </div>
         </div>
     @endif

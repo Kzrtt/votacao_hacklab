@@ -30,7 +30,10 @@ class Dashboard extends Component
             foreach ($events as $key => $value) {
                 $this->events[] = $value->toArray();
             }
-        }         
+        } else {
+            $this->evtId = auth()->user()->getRepresentedAgent->getAgent->event->evt_id;
+            $this->getEventEvaluations();
+        }    
     }
 
     public function goVote() {

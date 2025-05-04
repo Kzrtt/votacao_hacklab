@@ -41,7 +41,7 @@ Judge:
       placeholder: "Informe o Nome"
       helper: "Nome do Jurado"
       groupIn: "Dados Jurado"
-      sizing: "mb-4 w-full"
+      sizing: "mb-4 w-1/2"
       identifier: "name"
       validationRules: 
         - "required"
@@ -55,46 +55,7 @@ Judge:
       groupIn: "Dados Jurado"
       sizing: "mb-4 w-1/2"
       identifier: "obs"
-      line: 2
-    jdg_email:
-      type: string
-      label: "Email"
-      edit: true
-      placeholder: "Informe o Email"
-      helper: "Observação do Email"
-      groupIn: "Dados Jurado"
-      sizing: "mb-4 w-1/2"
-      identifier: "email"
-      validationRules:
-        - "required"
-      line: 2
-    jdg_password:
-      type: string
-      label: "Senha"
-      edit: false
-      hide: "!isEdit"
-      placeholder: "Informe a Senha"
-      helper: "Senha do Jurado"
-      groupIn: "Dados Jurado"
-      sizing: "mb-4 w-1/2"
-      identifier: "password"
-      saveFunction: encrypt
-      validationRules: 
-        - "required"
-      line: 3
-    confirm_password:
-      type: string
-      edit: false
-      hide: "!isEdit"
-      label: "Confirmar Senha"
-      placeholder: "Confirme a senha"
-      helper: "Confirme a senha"
-      sizing: "mb-4 w-1/2"
-      groupIn: "Dados Jurado"
-      identifier: "confirm_password"
-      validationRules: 
-        - "required"
-      line: 3
+      line: 1
     event_evt_id:
       type: relation
       label: "Evento"
@@ -114,7 +75,7 @@ Judge:
         pluck:
           - evt_name
           - evt_id
-      line: 4
+      line: 2
   buttonsConfig:
     showDeleteButton: true
     showEditButton: true

@@ -99,7 +99,7 @@ Criterion:
     showInsertButton: true
     showSearchButton: true
   getConfig: 
-    method: getAll
+    method: getForLevelByEvent
     controller: ListingCtrl
     params: 
       model: Criterion

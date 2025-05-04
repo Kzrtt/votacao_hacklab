@@ -22,15 +22,37 @@ class StopwatchScreen extends Component
     public $selectEventModal = false;
     public $changeDurationModal = false;
     public $stopwatchDuration = "";
-
+    public $usrLevel = "";
+    
     protected $listeners = ['startTimer', 'resetTimer'];
 
     public function mount()
     {
-        $eventCtrl = new GenericCtrl("Event");
-        $events = $eventCtrl->getAll();
-        foreach ($events as $key => $value) {
-            $this->events[] = $value->toArray();
+        $this->usrLevel = auth()->user()->usr_level;
+
+        if($this->usrLevel == "Admin") {
+            $eventCtrl = new GenericCtrl("Event");
+            $events = $eventCtrl->getAll();
+            foreach ($events as $key => $value) {
+                $this->events[] = $value->toArray();
+            }
+        } else {
+            $evtId = auth()->user()->getRepresentedAgent->getAgent->event->evt_id;
+            
+            $ctrl = new GenericCtrl("Event");
+            $this->event = $ctrl->getObject($evtId);
+
+            $timer = $this->event->timer
+                ?? $this->event->timer()->create([
+                    'etm_started_at' => null,
+                    'etm_duration'   => $this->duration,
+                ]);
+
+            $this->startTimestamp = $timer->etm_started_at
+                ? Carbon::parse($timer->etm_started_at)->timestamp
+                : 0;
+
+            $this->duration = $timer->etm_duration;
         }
     }
 

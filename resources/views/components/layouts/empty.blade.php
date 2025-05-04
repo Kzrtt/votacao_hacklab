@@ -14,7 +14,15 @@
 
         <tallstackui:script /> 
         @livewireStyles
-        @vite(['resources/css/app.css', 'public/css/font-awesome-pro-master.min.css?v=0.0.1'])
+        {{-- bundle do seu app: --}}
+
+        @vite(['resources/css/app.css', 'resources/js/app.js'])
+
+        {{-- FontAwesome direto da pasta public/css --}}
+        <link
+            rel="stylesheet"
+            href="{{ asset('css/font-awesome-pro-master.min.css') }}?v=0.0.1"
+        >
     </head>
     <body class="bg-gray-200 m-0 p-0 h-full">
         <x-ts-dialog /> 
