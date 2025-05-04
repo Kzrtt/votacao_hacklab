@@ -15,6 +15,12 @@ Person:
         labelStyle: 'font-semibold text-secondary-500/50 text-md pb-2'
         fieldStyle: 'truncate text-gray-700/75'
         html: 'p'
+      pes_function:
+        name: Função
+        tagStyle: 'flex flex-row justify-between'
+        labelStyle: 'font-semibold text-secondary-500/50 text-md pb-2'
+        fieldStyle: 'truncate text-gray-700/75'
+        html: 'p'
       pes_created_at:
         name: Criado Em
         tagStyle: 'flex flex-row justify-between'
@@ -58,154 +64,23 @@ Person:
       placeholder: "Informe o Email"
       helper: "Email do Usuário"
       groupIn: "Dados Pessoais"
-      sizing: "mb-4 w-full max-w-md"
+      sizing: "mb-4 w-1/2"
       identifier: "email"
       validationRules: 
         - "required"
       line: 2
-    pes_phone:
+    pes_function:
       type: string
-      label: "Telefone"
+      label: "Função"
       edit: true
-      placeholder: "Informe o telefone"
-      helper: "Telefone do Usuário"
-      sizing: "mb-4 w-full max-w-md"
+      placeholder: "Informe a Função"
+      helper: "Função do Usuário"
       groupIn: "Dados Pessoais"
-      identifier: "phone"
-      mask: "(99) 99999-9999"
-      line: 2
-    pes_cpf:
-      type: string
-      label: "CPF"
-      edit: false
-      placeholder: "Informe o cpf"
-      helper: "Documento do Usuário"
-      sizing: "mb-4 w-full max-w-md"
-      groupIn: "Dados Pessoais"
-      identifier: "cpf"
-      customValidation: ValidateCPF
-      mask: "999.999.999-99"
+      sizing: "mb-4 w-1/2"
+      identifier: "function"
       validationRules: 
         - "required"
       line: 2
-    pes_uf: 
-      type: select
-      edit: true
-      updateRemoteField:
-        remoteIdentifier: city
-        remoteEntity: City
-        remoteAtrr: cit_uf
-        key: cit_id
-        value: cit_name
-      values:
-        AC: "Acre"
-        AL: "Alagoas"
-        AP: "Amapá"
-        AM: "Amazonas"
-        BA: "Bahia"
-        CE: "Ceará"
-        DF: "Distrito Federal"
-        ES: "Espírito Santo"
-        GO: "Goiás"
-        MA: "Maranhão"
-        MT: "Mato Grosso"
-        MS: "Mato Grosso do Sul"
-        MG: "Minas Gerais"
-        PA: "Pará"
-        PB: "Paraíba"
-        PR: "Paraná"
-        PE: "Pernambuco"
-        PI: "Piauí"
-        RJ: "Rio de Janeiro"
-        RN: "Rio Grande do Norte"
-        RS: "Rio Grande do Sul"
-        RO: "Rondônia"
-        RR: "Roraima"
-        SC: "Santa Catarina"
-        SP: "São Paulo"
-        SE: "Sergipe"
-        TO: "Tocantins"
-      label: "Estado"
-      placeholder: "Selecione o Estado"
-      helper: "Estado do Endereço"
-      sizing: "mb-4 w-1/6"
-      groupIn: "Endereço"
-      identifier: "uf"
-      validationRules: 
-        - "required"
-      line: 1
-    city_cit_id: 
-      type: relation
-      label: "Cidade"
-      edit: true
-      placeholder: "Selecione a Cidade"
-      helper: "Cidade do Endereço"
-      sizing: "mb-4 w-4/4"
-      groupIn: "Endereço"
-      identifier: "city"
-      validationRules: 
-        - "required"
-      values:
-      line: 1
-    pes_neighborhood:
-      type: string
-      label: "Bairro"
-      edit: true
-      placeholder: "Informe o bairro"
-      helper: "Bairro do Endereço"
-      sizing: "mb-4 w-2/4"
-      groupIn: "Endereço"
-      identifier: "neighborhood"
-      validationRules: 
-        - "required"
-      line: 2
-    pes_street:
-      type: string
-      label: "Logradouro"
-      edit: true
-      placeholder: "Informe o Logradouro"
-      helper: "Logradouro do Endereço"
-      sizing: "mb-4 w-2/4"
-      groupIn: "Endereço"
-      identifier: "street"
-      validationRules: 
-        - "required"
-      line: 2
-    pes_number:
-      type: string
-      label: "Número"
-      edit: true
-      placeholder: "Informe o Número"
-      helper: "Número do Endereço"
-      sizing: "mb-4 w-1/4"
-      groupIn: "Endereço"
-      identifier: "number"
-      validationRules: 
-        - "required"
-      line: 2
-    pes_complement:
-      type: string
-      label: "Complemento"
-      edit: true
-      placeholder: "Informe o complemento"
-      helper: "Complemento do Endereço"
-      sizing: "mb-4 w-4/4"
-      groupIn: "Endereço"
-      identifier: "complement"
-      line: 3    
-    pes_postal_code:
-      type: string
-      label: "CEP"
-      edit: true
-      placeholder: "Informe o cep"
-      helper: "CEP do Endereço"
-      sizing: "mb-4 w-1/6"
-      groupIn: "Endereço"
-      identifier: "postal_code"
-      mask: "99999-999"
-      validationRules: 
-        - "required"
-      line: 3
   buttonsConfig:
     showDeleteButton: true
     showEditButton: true
