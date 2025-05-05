@@ -170,7 +170,7 @@
     @endif
 
     @if (count($report) > 0 || $isJudge)
-        <div x-show="revealedCount === {{ count($report) }} || {{ $isJudge }}" class="mb-10 w-full space-y-6 {{ $isJudge ? "mt-5" : "" }}">
+        <div x-show="revealedCount === {{ count($report) }} || @json($isJudge)" class="mb-10 w-full space-y-6 {{ $isJudge ? "mt-5" : "" }}">
             @foreach($report as $project)
                 <div x-data="{ open: false }" class="overflow-hidden rounded-lg">
                     <!-- Cabeçalho do card -->
