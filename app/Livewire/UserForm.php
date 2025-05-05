@@ -25,11 +25,10 @@ class UserForm extends Component
         $this->params['_local'] = $local;
         $this->params['_id'] = $id;
 
-        $this->renderUIViaYaml();
+        $this->isEdit = !is_null($id);
+        $this->renderUIViaYaml($this->isEdit);
 
         if(!is_null($id)) {
-            $this->isEdit = true;
-
             $genericCtrl = new GenericCtrl($local);
             $userRepresentedAgentCtrl = new GenericCtrl("UserRepresentedAgent");
 

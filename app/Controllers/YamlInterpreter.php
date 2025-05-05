@@ -110,7 +110,7 @@
             return $this->listOutput;
         }
 
-        public function renderFormUIData() {
+        public function renderFormUIData($isEdit) {
             $this->formOutput['formConfig'] = array();
             $this->formOutput['selectsPopulate'] = array();
             $this->formOutput['messages'] = array();
@@ -131,7 +131,7 @@
 
             if(isset($formConfig['saveConfig'])) {
                 $this->formOutput['saveConfig'] = $formConfig['saveConfig'];
-            }
+            }   
     
             foreach ($formConfig['formConfig'] as $field => $data) {
                 if($field == "view") {
@@ -175,12 +175,24 @@
                             $rule = $validation;
                         }
     
-                        if($rule == "required") {
-                            $data['required'] = true;
+                        $editable = filter_var(
+                            $data['edit'],
+                            FILTER_VALIDATE_BOOLEAN,
+                            FILTER_NULL_ON_FAILURE
+                        );
+                        
+                        if($rule === 'required') {
+                            if ($isEdit && ! $editable) {
+                            } else {
+                                // ou estamos criando (! $isEdit) OU estamos editando e ele é editável
+                                $data['required'] = true;
+                                $this->formOutput['messages']['formData.'.$data['identifier'].'.'.$rule] = getMessageForValidation($rule);
+                                $validationArray[] = $validation;
+                            }
+                        } else {    
+                            $this->formOutput['messages']['formData.'.$data['identifier'].'.'.$rule] = getMessageForValidation($rule);
+                            $validationArray[] = $validation;
                         }
-    
-                        $this->formOutput['messages']['formData.'.$data['identifier'].'.'.$rule] = getMessageForValidation($rule);
-                        $validationArray[] = $validation;
                     }
 
                     if(@$data['customValidation']) {

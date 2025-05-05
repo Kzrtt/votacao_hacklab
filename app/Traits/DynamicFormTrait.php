@@ -31,10 +31,10 @@ trait DynamicFormTrait {
         return $this->messages;
     }
 
-    public function renderUIViaYaml()
+    public function renderUIViaYaml($isEdit)
     {
         $yamlInterpreter = new YamlInterpreter($this->params['_local']);
-        $formOutput = $yamlInterpreter->renderFormUIData();
+        $formOutput = $yamlInterpreter->renderFormUIData($isEdit);
 
         $this->formConfig = $formOutput['formConfig'];
         $this->selectsPopulate = $formOutput['selectsPopulate'];

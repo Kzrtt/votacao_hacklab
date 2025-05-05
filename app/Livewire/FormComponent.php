@@ -41,10 +41,10 @@ class FormComponent extends Component
         $this->formData = [];
         $this->identifierToField = [];
 
-        $this->renderUIViaYaml();
+        $this->isEdit = !is_null($id);
+        $this->renderUIViaYaml($this->isEdit);
 
         if (!is_null($id)) {
-            $this->isEdit = true;
             $genericCtrl = new GenericCtrl($local);
             $className = "App\\Models\\" . $local;
             $object = $genericCtrl->getObject($id);
