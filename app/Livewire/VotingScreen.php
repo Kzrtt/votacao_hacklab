@@ -95,6 +95,11 @@ class VotingScreen extends Component
                 ]);
             }
 
+            if($value > 10 || $value < 0) {
+                $this->toast()->error("Erro!", "Nota inválida para critério ({$crtId}), as notas devem ser de 0-10")->send();
+                continue;
+            }
+
             // atualiza só este par avaliação/critério
             $evaluationScoreCtrl->update(
                 $evaluationScore->evs_id,

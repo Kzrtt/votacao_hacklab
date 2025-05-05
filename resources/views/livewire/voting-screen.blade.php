@@ -146,13 +146,14 @@
                     @foreach ($criterions as $criterion)
                         <tr wire:key="project-{{ $selectedProject }}-criterion-{{ $criterion['crt_id'] }}">
                             <td class="px-4 py-3 text-gray-800">
-                                <span class="text-md font-semibold text-black/55">{{ $criterion['crt_name'] }} ({{ $criterion['crt_weight'] }}%)</span><br>
+                                <span class="text-md font-semibold text-black/55">({{ $criterion['crt_id'] }}) {{ $criterion['crt_name'] }} ({{ $criterion['crt_weight'] }}%)</span><br>
                                 <span class="text-sm text-primary-600/80">{{ $criterion['crt_explanation'] }}</span>
                             </td>
                             <td class="px-4 py-3 text-right">
                                 <input
                                     type="number"
                                     min="0"
+                                    max="10"
                                     step="0.1"
                                     lang="en"
                                     placeholder="0.0"
