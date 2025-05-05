@@ -34,7 +34,7 @@ class ProfileScreen extends Component
 
     public function mount() {
         $this->params['_local'] = "Person";
-        $this->renderUIViaYaml();
+        $this->renderUIViaYaml($this->isEdit);
 
         $genericCtrl = new GenericCtrl("Person");
         $className = "App\\Models\\Person";
