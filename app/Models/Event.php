@@ -22,6 +22,14 @@ class Event extends Model
         'evt_description',
     ];
 
+    protected static function booted()
+    {
+        static::deleting(function ($event) {
+            // se existir, apaga o timer associado
+            $event->timer()->delete();
+        });
+    }
+
     public function projects()
     {
         return $this->hasMany(Project::class, 'event_evt_id', 'evt_id');
