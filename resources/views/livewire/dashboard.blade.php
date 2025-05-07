@@ -206,7 +206,7 @@
                             <div class="bg-white rounded-lg overflow-hidden shadow">
                                 <div class="bg-primary-800/90 px-4 py-2">
                                     <p class="text-sm font-medium text-white">
-                                        Juiz: {{ $judge['judge_name'] }} —
+                                        {{ $judge['judge_name'] }} {{ $judge['judge_obs'] != "" ? "({$judge['judge_obs']})" : "" }} —
                                         Média Ponderada:
                                         <span class="font-semibold">{{ number_format($judge['score'], 2, '.', '') }}</span>
                                     </p>

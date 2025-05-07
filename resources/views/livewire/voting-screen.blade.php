@@ -85,7 +85,7 @@
 
     <div class="w-full"
         x-data="{
-            criterions: @entangle('projects'),
+            projects: @entangle('projects'),
             criterions: @entangle('criterions'),
             selected: @entangle('selectedProject')
         }"

@@ -82,6 +82,7 @@ class Dashboard extends Component
                 $row['judges'][] = [
                     'judge_id' => $evaluation->judge_jdg_id,
                     'judge_name' => $evaluation->judge->jdg_name,
+                    'judge_obs' => $evaluation->judge->jdg_obs,
                     'score' => $judgeAvg,
                     'evaluation_scores' => $scoresMap,
                 ];
