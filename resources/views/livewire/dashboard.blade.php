@@ -185,7 +185,7 @@
                             </div>
                             <div class="flex flex-col">
                                 <p class="text-lg font-semibold text-primary-800 mb-1">
-                                    {{ $project['prj_name'] }} ({{ $project['prj_participants'] }} participantes)
+                                    {{ $project['prj_name'] }} ({{ $project['prj_participants'] }})
                                 </p>
                                 <p class="text-sm text-primary-600">
                                     Média Final:
