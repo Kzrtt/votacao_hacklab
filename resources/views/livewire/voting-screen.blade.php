@@ -90,7 +90,7 @@
             selected: @entangle('selectedProject')
         }"
     >
-        <div class="flex flex-row mt-8 w-full grid grid-cols-4 gap-x-10">
+        <div class="flex flex-row mt-8 w-full gap-x-10">
             @foreach($projects as $project)
                 <div 
                     @click="selected = {{ $project['prj_id'] }}; $wire.selectProject({{ $project['prj_id'] }})"
