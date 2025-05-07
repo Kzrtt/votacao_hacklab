@@ -118,7 +118,7 @@
                             revealedCount++;
                         }"
                         :class="revealed ? '' : 'filter blur-md cursor-pointer'" 
-                        class="bg-gray-100 relative rounded-lg shadow hover:shadow-lg hover:scale-[1.01] hover:cursor-pointer transition-all duration-200">
+                        class="bg-gray-100 w-full relative rounded-lg shadow hover:shadow-lg hover:scale-[1.01] hover:cursor-pointer transition-all duration-200">
                         <div class="flex items-center justify-center w-20 h-20 bg-white rounded-full absolute top-6 right-3">
                             <div class="flex items-center justify-center w-17 h-17 bg-tertiary-200/80 rounded-full">
                                 <p class="text-primary-800/90 font-bold text-2xl">{{ $key + 1 }}°</p>
