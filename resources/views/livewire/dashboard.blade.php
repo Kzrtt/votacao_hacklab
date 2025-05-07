@@ -109,7 +109,7 @@
 
     @if (!$isJudge)
         <div class="w-full">
-            <div class="mt-8 w-full grid grid-cols-5 space-x-10">
+            <div class="flex flex-row mt-8 w-full space-x-10">
                 @foreach ($report as $key => $project)
                     <div
                         x-data="{ revealed: false }"
