@@ -26,14 +26,24 @@
         }
 
         /**
-         * @return object
+         * @return object|int
          */
-        public function getObjectByField($field, $value, $first=true) {
-            if($first) {
-                return $this->model::where($field, $value)->first();
-            } else {
-                return $this->model::where($field, $value)->get();
+        public function getObjectByField($field, $value, $first = true, $count = false)
+        {
+            $query = $this->model::where($field, $value);
+
+            if ($count) {
+                // retorna apenas o número de registros
+                return $query->count();
             }
+
+            if ($first) {
+                // retorna o primeiro registro (ou null)
+                return $query->first();
+            }
+
+            // retorna todos os registros encontrados
+            return $query->get();
         }
 
         /**

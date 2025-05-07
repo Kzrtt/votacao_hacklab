@@ -43,7 +43,10 @@ class Dashboard extends Component
     public function getEventEvaluations()
     {
         $projectCtrl = new GenericCtrl('Project');
+        $judgeCtrl = new GenericCtrl('Judge');
+
         $projects = $projectCtrl->getObjectByField('event_evt_id', $this->evtId, false);
+        $judgeCount = $judgeCtrl->getObjectByField('event_evt_id', $this->evtId, false, true);
         $report = [];
     
         foreach ($projects as $prj) {
@@ -56,9 +59,7 @@ class Dashboard extends Component
                 'final_average' => 0.0,
             ];
     
-            $sumAllJudges = 0;
-            $judgeCount = 0;
-    
+            $sumAllJudges = 0;    
             foreach ($prj->evaluations as $evaluation) {
                 $sumWeighted = 0;
                 $sumWeights = 0;
@@ -88,7 +89,6 @@ class Dashboard extends Component
                 ];
     
                 $sumAllJudges += $judgeAvg;
-                $judgeCount++;
             }
     
             $row['final_average'] = $judgeCount > 0
