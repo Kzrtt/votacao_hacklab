@@ -90,11 +90,11 @@
             selected: @entangle('selectedProject')
         }"
     >
-        <div class="mt-8 w-full grid grid-cols-4 gap-x-10">
+        <div class="flex flex-row mt-8 w-full grid grid-cols-4 gap-x-10">
             @foreach($projects as $project)
                 <div 
                     @click="selected = {{ $project['prj_id'] }}; $wire.selectProject({{ $project['prj_id'] }})"
-                    class="bg-gray-100 relative rounded-lg shadow hover:shadow-lg hover:scale-[1.01] hover:cursor-pointer transition-all duration-200"
+                    class="bg-gray-100 w-full relative rounded-lg shadow hover:shadow-lg hover:scale-[1.01] hover:cursor-pointer transition-all duration-200"
                 >
                     <div class="flex items-center justify-center w-20 h-20 bg-white rounded-full absolute top-6 right-3">
                         <div class="flex items-center justify-center w-17 h-17 bg-tertiary-200/80 rounded-full">
